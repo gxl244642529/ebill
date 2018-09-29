@@ -156,19 +156,6 @@
             })
         }else {
           A.confirm("确定解绑？这次解绑后还剩"+count+"张可以解绑",(action)=>{
-              // var lineList = this.arr.join(',');
-              // let data = {token:window.localStorage.getItem("token"),cards:lineList}
-              //
-              // Api.api({
-              //     url:'tc_ecard/delTicketCard',
-              //     data:data,
-              //     success:(result)=>{
-              //       if (result) {
-              //         A.toast("解绑成功");
-              //         this.$router.go(-1)
-              //       }
-              //     }
-              // })
               this.delTicketCard();
           })
         }
