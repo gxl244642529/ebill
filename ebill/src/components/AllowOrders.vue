@@ -9,22 +9,28 @@
             :rightMsg="rightext"
             @renderRight = "gotoAssignCard" >
          </title-bar>
-           <div class="topmsg" @click="gethis">
+           <div class="topmsg" >
+             <div class="tou">
+               <img :src="cancelImg" width="30px"height="20px" class="imghis"/>
+               <label @click="cancelCard" >取消指定卡</label>
+             </div>
+              <div class="tou" @click="gethis">
                 <img :src="his" width="30px"height="20px" class="imghis"/>
-               
                 <label @click="gethis" >开票历史</label>
-           
+              </div>
+
             </div>
+              <p>　您可以开具最近两个自然月内的发票：</p>
             <div v-show="isspinner">
                 <spinner></spinner>
             </div>
-            
+
          <div v-show="ishasorder&&!isspinner">
-          
-            <p>　您可以开具最近两个自然月内的发票：</p>
+
+
                 <div class="check-all">
                 <div v-on:click='checkedAll' class="checkallsty">
-                    <input id="all-select" 
+                    <input id="all-select"
                     type='checkbox' value="全选" class='input-checkbox' v-model='checked' style="display:none" @click='checkedAll'>
                     <label for="all-select" class="all-select-label" @click="checkedAll"></label>
                     <span class="all-select-span">全选</span>
@@ -101,6 +107,7 @@ export default {
       ishasorder:"",
       orderImg1:Api.getImgUrl()+"/static/img/order_1.png",
       orderImg2:Api.getImgUrl()+"/static/img/order_2.png",
+      cancelImg:Api.getImgUrl()+"/static/img/cancel.png",
       rightext:"",
       isspinner:true,
       his:Api.getImgUrl()+"/static/img/his.png",
@@ -116,7 +123,7 @@ export default {
   },
   mounted:function(){
      window.localStorage.setItem("orderrouter","allowOrders")
-      
+
       this.getBindCardCount();
       let data ={token:window.localStorage.getItem("token"),sortord:this.sortord};
        Api.api({
@@ -137,10 +144,10 @@ export default {
 
             }
         });
-       
+
       this.loadMore(data);
 
- 
+
   },
 
   methods:{
@@ -169,7 +176,7 @@ export default {
                     this.ishasorder = false
                 }
 
-              
+
             }
         });
       },
@@ -191,7 +198,7 @@ export default {
             });
             console.log(amttotal);
             if(amttotal/100>=1000){
-                A.alert("单张发票金额需在1000元以内"); 
+                A.alert("单张发票金额需在1000元以内");
                 return;
             }
 
@@ -202,7 +209,7 @@ export default {
         })
 
       },
-   
+
       orderList:function(){
         //   this.order=this.order=="按时间排序↑"?"按时间排序↓":"按时间排序↑";
         if(this.sortord==1){
@@ -210,7 +217,7 @@ export default {
         }else{
               this.sortord=1;
         }
-        
+
       },
       gotoAssignCard:function(){
         //   router.push({path:'/assignCard'});
@@ -218,6 +225,9 @@ export default {
       },
       gethis(){
           Api.push({str:'/billHistory'})
+      },
+      cancelCard(){
+        Api.push({str:'/cancelCard'})
       },
       godesc(){
         //   console.log("跳转开票说明")
@@ -271,7 +281,7 @@ export default {
    #allow_orders .check-all .mint-checklist-label{
        display: block!important;
    }
-   
+
    #allow_orders .list-top{
        display: flex;
        align-items: center;
@@ -285,9 +295,10 @@ export default {
        right:20px;
    }
    #allow_orders .topmsg{
-       
+
        display: flex;
        justify-content: flex-end;
+       flex-direction: row;
    }
    #allow_orders .imghis{
         margin-top: 50px;
@@ -303,16 +314,16 @@ export default {
        padding:5px;
        padding-top:12px;
    }
- 
+
    .check-all{
        display: flex;
        align-items: center;
        flex: 1;
        margin-left:10px;
        flex-direction: row;
-       
+
    }
-  
+
    .orderord{
        display: flex;
        flex: 1;
@@ -327,7 +338,7 @@ export default {
    .checkallsty{
        display: flex;
        flex: 1;
-     
+
    }
     #btn{
         position:fixed;
@@ -345,7 +356,7 @@ export default {
     .noorder{
         display: flex;
         flex: 1;
-        margin-top:50%; 
+        margin-top:50%;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -395,5 +406,9 @@ export default {
         line-height:21px;
         margin-left:6px;
     }
-   
+    .tou{
+      display:flex;
+      align-items:center
+    }
+
 </style>

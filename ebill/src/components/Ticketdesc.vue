@@ -4,19 +4,19 @@
             title="开票说明"
             >
         </title-bar>
-       
-            <iframe 
+
+            <iframe
                 :src="decsurl"
                 class="descurl"
                 style="height:100%;visibility:inherit; width:100%;margin-top:35px;padding:3%;"
                 frameborder="0"
                 >
             </iframe>
-            
-     
+
+
     
   </div>
- 
+
 </template>
 
 
@@ -35,12 +35,12 @@
                 decsurl:Api.getDocUrl()+"tcdesc"
             }
         },
-      
+
     }
 </script>
 
 <style>
-    
+
     .ticket-desc{
          display: flex;
          flex: 1;

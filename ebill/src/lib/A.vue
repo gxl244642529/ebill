@@ -14,7 +14,7 @@
       alert:()=>{
 
       }
-  
+
     },
      alert(msg){
          MessageBox.alert(msg, title);
@@ -31,10 +31,13 @@
     //         callback;
     //       });
     confirm(msg,callback){
-       MessageBox.confirm(msg).callback
+      //  MessageBox.confirm(msg).callback
+       MessageBox.confirm(msg).then(action => {
+         callback(action)
+       });
     }
- 
-    
+
+
   }
- 
+
 </script>

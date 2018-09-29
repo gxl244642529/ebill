@@ -1,11 +1,11 @@
 <template>
     <div class="login">
-     
-      
+
+
             <div>
                  <mt-spinner type="double-bounce" color="#26a2ff"></mt-spinner>
             </div>
-           
+
     </div>
 </template>
 
@@ -15,13 +15,13 @@
     import EbillUtils from './EbillUtils'
     import A from '../lib/A'
     // let token = window.localStorage.getItem("token");
-  
+
     let header = {
     'content-type': 'multipart/form-data'
     }
     export default {
         name: 'Flash',
-   
+
         data(){
             return {
               bindCount:0,
@@ -33,7 +33,7 @@
         if(window.bundleType&&window.bundleType=='weixin'){
             //用openid换取获取token1234567890
             // let openId = window.openid;
-            let openId = '1234567890';//测试
+            let openId = '<?=$openid?>';//测试
             let data = {openId:openId}
             this.gourl(data,"tc_gate/wxGetToken")
         } if(window.bundleType&&window.bundleType=='app'){
@@ -44,7 +44,7 @@
         }
         //未获取到bundleType
         if(!window.bundleType){
-            
+
             A.toast("bundleType获取失败");
              var ua = window.navigator.userAgent.toLowerCase();
             if(ua.match(/MicroMessenger/i) == 'micromessenger'){
@@ -54,12 +54,12 @@
             }else{
                 let hash = window.userid;
                 let data ={hash:hash};
-                this.gourl(data,"tc_gate/getToken") 
+                this.gourl(data,"tc_gate/getToken")
             }
-        
+
         }
 
-  
+
       },
       methods:{
         gourl(data,url){
@@ -84,9 +84,9 @@
                                 // Api.push({str:'/allowOrders',query:{id:result}})
                                 Api.replace({str:'/allowOrders',query:{id:result}});
                             }else{
-                                Api.replace({str:'/assignCard'}) 
+                                Api.replace({str:'/assignCard'})
                             }
-                        
+
                         }
                     });
                 }else{
@@ -111,5 +111,5 @@
 
      };
 
-    
+
 </style>

@@ -4,8 +4,8 @@
             title="指定开票卡"
             :isRight="hasright"
             rightMsg="绑定e通卡"
-            @renderRight = "gobind" 
-             :isgobackFunction=true 
+            @renderRight = "gobind"
+             :isgobackFunction=true
              @goback="goback">
          </title-bar>
          <div v-show="isspinner">
@@ -13,9 +13,9 @@
          </div>
          <div v-show="ishascard&&!isspinner">
             <div class="tipdiv">
-              
+
                <p id="tip">　您可以指定最多{{canBindCount}}张可开票的卡号</p>
-               <img id="tip_help" :src="helpimg" width="22px" height="22px" @click="gobindhelp"> 
+               <img id="tip_help" :src="helpimg" width="22px" height="22px" @click="gobindhelp">
             </div>
             <div class="m-bottom">
                 <card-checklist
@@ -122,11 +122,12 @@ export default {
         }else if(this.canBindCount!=this.bindCount){
              this.hasright = true;
         }
-            
+
     }
   },
 
   mounted(){
+    console.log(this.arr)
     let data = {token:window.localStorage.getItem("token")};
       //可绑定几张卡
     this.getcanBindCard(data);
@@ -157,9 +158,9 @@ export default {
                 console.log("改变")
             }
         }
-    });   
-  
-          
+    });
+
+
   },
   methods:{
       getcanBindCard(data){
@@ -224,16 +225,16 @@ export default {
           console.log(lineList);
 
           var data = {token:window.localStorage.getItem("token"),cards:lineList};
-          
-         MessageBox.confirm('卡指定后不能取消，是否确定?').then(action => {
+
+         MessageBox.confirm('确认指定卡?').then(action => {
              Api.api({
                 url:"tc_ecard/setTicketCard",
                 data:data,
                 success:(result)=>{
-                    
+
                     console.log(this.canBindCount);
                     Api.replace({str:'/allowOrders',query:{id:this.bindCount}});
-                  
+
                 }
             })
           });
@@ -292,7 +293,7 @@ export default {
             this.buttype = "danger";
             this.plain = null;
         }else{
-            this.isNotChange = true; 
+            this.isNotChange = true;
              this.buttype = "default";
             this.plain = "plain";
         }
@@ -313,7 +314,7 @@ export default {
         margin:0px;
     }
     #assign_card button{
-        width:80%;    
+        width:80%;
         /*margin-left:10%;*/
     }
     #assign_card #btn{
@@ -324,7 +325,7 @@ export default {
         padding:10px;
         padding-left:10%;
         background-color: #fff;
-        
+
     }
     #assign_card #bindbtn{
         position:fixed;
@@ -362,10 +363,10 @@ export default {
         line-height:22px;
     }
     .nocard{
-        
+
           display: flex;
           flex: 1;
-          margin-top:50%; 
+          margin-top:50%;
           justify-content: center;
           align-items: center;
           flex-direction: column;

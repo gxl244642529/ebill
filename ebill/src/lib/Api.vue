@@ -9,7 +9,7 @@
   let header={
     'content-type': 'multipart/form-data'
   };
-  let BASE_URL="http://192.168.1.236:8091/api/";//本地测试地址
+  let BASE_URL="http://192.168.1.236:8191/api/";//本地测试地址
   // let BASE_URL="http://110.80.22.108:28080/api/";    //服务器110测试地址
   // let BASE_URL="http://218.5.80.17:28095/api/";    //正式服务器218地址
     // let BASE_IMAGE_URL_RELEASE = "http://www.cczcc.net/resources/ticket"//测试图片地址
@@ -60,10 +60,10 @@
 
 
         }else{
-          MessageBox.alert("服务器错误！"); 
+          MessageBox.alert("服务器错误！");
           api.error&&api.error(result);
         }
-        
+
       })
       .catch((err)=>{
         Toast({

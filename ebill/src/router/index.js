@@ -20,6 +20,7 @@ import Flash from '@/components/Flash'
 import BillHistoryDetail from '@/components/BillHistoryDetail'
 import DownloadTicket from '@/components/DownloadTicket'
 import Ticketdesc from '@/components/Ticketdesc'
+import CancelAssignCard from '@/components/CancelAssignCard'
 
 
 Vue.use(Router)
@@ -40,7 +41,7 @@ export default new Router({
     //   name: 'Nav',
     //   component: Nav
     // },
- 
+
     {
       path: '/',
       name: 'Flash',
@@ -73,5 +74,6 @@ export default new Router({
     { path: '/download-ticket',component:DownloadTicket},
     { path: '/test',component:Test},
     { path: '/ticket_desc',component:Ticketdesc},
+    { path:'/cancelCard',component:CancelAssignCard}
   ]
 })
